@@ -47,9 +47,25 @@ public class MainActivity extends BaseActivity {
         mAdapter = new NoteRecyclerViewAdapter(mList, this);
         mRecyclerView.setAdapter(mAdapter);
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Log.d("MAIN", "aktivita je aktivna");
+
         File dir = new File(TextNoteActivity.path); // cesta k poznamkam
         File[] files = dir.listFiles();
 
+        if(files == null) {
+            return;
+        }
+
+        // vymaze vsetky zaznamy z listu
+        mList.clear();
+        
         for (File file : files) { // opakuje sa na vsetky subory
             if (!file.isDirectory()) {
                 Note note1 = new Note();
