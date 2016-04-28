@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity {
 
         // vymaze vsetky zaznamy z listu
         mList.clear();
-        
+
         for (File file : files) { // opakuje sa na vsetky subory
             if (!file.isDirectory()) {
                 Note note1 = new Note();

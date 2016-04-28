@@ -36,6 +36,16 @@
         >
     </TextView>
 
+    <ImageView
+        android:id="@+id/delete_button"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_close_black_24dp"
+        />
+
     <View
         style="@style/Divider"
         android:layout_alignParentBottom="true"
