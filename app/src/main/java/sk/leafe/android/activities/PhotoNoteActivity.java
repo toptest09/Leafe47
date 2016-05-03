@@ -1,5 +1,6 @@
 package sk.leafe.android.activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -57,6 +60,29 @@ public class PhotoNoteActivity extends AppCompatActivity {
 
         // otvorenie suboru do externej pameti s title, to je meno suboru a nadpis ktory davas v tej appke
 
+        File file = new File (path + "/"+title+".jpg");
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        App.bm.compress(Bitmap.CompressFormat.JPEG, 90, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        FileOutputStream fo;
+        try {
+            file.createNewFile();
+            fo = new FileOutputStream(file);
+            fo.write(byteArray);
+            fo.close();
+
+            Toast toast = Toast.makeText(PhotoNoteActivity.this, "Obrazok ulozeny", Toast.LENGTH_LONG);
+            toast.show();
+
+            // upload file
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         finish();
     }

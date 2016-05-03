@@ -58,6 +58,8 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
                 // temporary set note to global app
 //                App.note = holder.mItem;
 
+                // TODO: check for note type
+
                 Intent intent = new Intent(mContext, TextNoteActivity.class);
                 intent.putExtra("title", holder.mItem.title + "");
                 mContext.startActivity(intent);

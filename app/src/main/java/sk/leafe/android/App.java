@@ -31,6 +31,10 @@ public class App extends Application {
         // init internal db
         ActiveAndroid.initialize(this);
         Log.i(TAG, "App initialized");
+
+        String test = "moj test";
+
+        String dalsi = test;
     }
 
     public static boolean hasPermission(String perm) {
