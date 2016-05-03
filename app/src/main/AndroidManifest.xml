@@ -38,6 +38,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="sk.leafe.android.activities.MainActivity"/>
         </activity>
+        <activity
+            android:name=".activities.PhotoNoteActivity"
+            android:label="@string/title_activity_photo_note"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="sk.leafe.android.activities.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

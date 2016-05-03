@@ -184,6 +184,11 @@ public class MainActivity extends BaseActivity {
                 // ulozim na policku
                 App.bm = bm;
 
+                // spustim novu aktivitu
+                Intent intent = new Intent(this, PhotoNoteActivity.class);
+                startActivity(intent);
+
+
 //                // create and save new file for upload
 //                File file = new File(Environment.getExternalStorageDirectory(), "photo.jpg");
 //
@@ -229,6 +234,11 @@ public class MainActivity extends BaseActivity {
 
                 // ulozim na policku
                 App.bm = bm;
+
+                // spustim novu aktivitu
+                Intent intent = new Intent(this, PhotoNoteActivity.class);
+                startActivity(intent);
+
 
 //                // create and save new file for upload
 //                File file = new File(Environment.getExternalStorageDirectory(), "photo.jpg");
