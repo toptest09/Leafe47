@@ -2,6 +2,7 @@ package sk.leafe.android.adapters;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import sk.leafe.android.App;
 import sk.leafe.android.R;
+import sk.leafe.android.activities.TextNoteActivity;
 import sk.leafe.android.models.Note;
 
 /**
@@ -56,12 +58,12 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
                 // temporary set note to global app
 //                App.note = holder.mItem;
 
-//                Intent intent = new Intent(mContext, NoteActivity.class);
-//                intent.putExtra("title", holder.mItem.title + "");
-//                mContext.startActivity(intent);
-
-                Toast toast = Toast.makeText(mContext, "Klikol si na poznamku", Toast.LENGTH_SHORT);
-                toast.show();
+                Intent intent = new Intent(mContext, TextNoteActivity.class);
+                intent.putExtra("title", holder.mItem.title + "");
+                mContext.startActivity(intent);
+//
+//                Toast toast = Toast.makeText(mContext, "Klikol si na poznamku", Toast.LENGTH_SHORT);
+//                toast.show();
             }
         });
 

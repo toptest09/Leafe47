@@ -9,4 +9,10 @@
         android:title="Pridat textovu poznamku"
         app:showAsAction="never"/>
 
+    <item
+        android:id="@+id/action_photo_note"
+        android:orderInCategory="100"
+        android:title="Pridat poznamku s fotkou"
+        app:showAsAction="never"/>
+
 </menu>

@@ -6,4 +6,5 @@ package sk.leafe.android.models;
 public class Note {
     public String title;
     public String content;
+    public String type;
 }

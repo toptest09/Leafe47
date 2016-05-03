@@ -41,8 +41,6 @@ public class TextNoteActivity extends AppCompatActivity {
 
         File dir = new File(path);
         dir.mkdirs();
-
-
     }
 
     public void onSave(View view) {
