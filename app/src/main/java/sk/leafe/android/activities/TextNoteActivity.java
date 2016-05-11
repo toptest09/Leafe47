@@ -7,6 +7,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -21,6 +22,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import sk.leafe.android.R;
+import sk.leafe.android.models.Note;
 
 public class TextNoteActivity extends AppCompatActivity {
     public static String TAG = "TextNoteActivity";
@@ -38,6 +40,22 @@ public class TextNoteActivity extends AppCompatActivity {
 
         mTitle = (EditText) findViewById(R.id.title);
         mContent = (EditText) findViewById(R.id.content);
+        String newString, newString2;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+                newString2= null;
+            } else {
+                newString= extras.getString("content");
+                newString2= extras.getString("title");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("content");
+            newString2= (String) savedInstanceState.getSerializable("title");
+        }
+        mTitle.setText(newString);
+        mContent.setText(newString2);
 
         File dir = new File(path);
         dir.mkdirs();

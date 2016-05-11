@@ -41,7 +41,20 @@ public class PhotoNoteActivity extends AppCompatActivity {
 
         mTitle = (EditText) findViewById(R.id.title);
         mPhoto = (ImageView) findViewById(R.id.photo);
+        String newString, newString2;
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
 
+                newString2= null;
+            } else {
+                newString2= extras.getString("title");
+            }
+        } else {
+            newString2= (String) savedInstanceState.getSerializable("title");
+        }
+        EditText title = (EditText) this.findViewById(R.id.title);
+        title.setText(newString2);
         File dir = new File(path);
         dir.mkdirs();
 

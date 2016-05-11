@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import sk.leafe.android.App;
 import sk.leafe.android.R;
+import sk.leafe.android.activities.MainActivity;
+import sk.leafe.android.activities.PhotoNoteActivity;
 import sk.leafe.android.activities.TextNoteActivity;
 import sk.leafe.android.models.Note;
 
@@ -59,9 +63,14 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
 //                App.note = holder.mItem;
 
                 // TODO: check for note type
-
-                Intent intent = new Intent(mContext, TextNoteActivity.class);
-                intent.putExtra("title", holder.mItem.title + "");
+                Intent intent;
+                if (holder.mItem.type == "text") {
+                    intent = new Intent(mContext, TextNoteActivity.class);
+                    intent.putExtra("content", holder.mItem.content);
+                } else {
+                    intent = new Intent(mContext, PhotoNoteActivity.class);
+                }
+                intent.putExtra("title", holder.mItem.title);
                 mContext.startActivity(intent);
 //
 //                Toast toast = Toast.makeText(mContext, "Klikol si na poznamku", Toast.LENGTH_SHORT);
@@ -90,11 +99,21 @@ public class NoteRecyclerViewAdapter extends RecyclerView.Adapter<NoteRecyclerVi
                                 // toto je objekt poznamky
 
 
-                                Toast toast = Toast.makeText(mContext, item.title, Toast.LENGTH_SHORT);
-                                toast.show();
 
-                                // TODO: vlozit kod na mazanie poznamky
 
+                                File file = new File(TextNoteActivity.path+"/"+item.title+".txt"); // cesta k txt
+                                if(file.delete()){
+                                    Toast toast = Toast.makeText(mContext, "Zmazane", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                                file = new File(TextNoteActivity.path+"/"+item.title+".jpg"); // cesta k jpg
+                                if(file.delete()){
+                                    Toast toast = Toast.makeText(mContext, "Zmazane", Toast.LENGTH_SHORT);
+                                    toast.show();
+                                }
+                                Intent intent = new Intent(mContext, MainActivity.class); // reload activity
+
+                                mContext.startActivity(intent);
 //                                mValues.remove(item);
 //                                mValues.notifyAll();
                             }
