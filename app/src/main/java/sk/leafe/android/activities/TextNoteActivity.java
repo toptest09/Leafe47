@@ -85,33 +85,20 @@ public class TextNoteActivity extends AppCompatActivity {
     public static void Save(File file, String[] data)
     {
         FileOutputStream fos = null;
-        try
-        {
+        try {
             fos = new FileOutputStream(file);
-        }
-        catch (FileNotFoundException e) {e.printStackTrace();}
-        try
-        {
-            try
-            {
-                for (int i = 0; i<data.length; i++)
-                {
-                    fos.write(data[i].getBytes());
-                    if (i < data.length-1)
-                    {
-                        fos.write("\n".getBytes());
-                    }
+
+            for (int i = 0; i < data.length; i++) {
+                fos.write(data[i].getBytes());
+                if (i < data.length - 1) {
+                    fos.write("\n".getBytes());
                 }
             }
-            catch (IOException e) {e.printStackTrace();}
-        }
-        finally
-        {
-            try
-            {
-                fos.close();
-            }
-            catch (IOException e) {e.printStackTrace();}
+
+            fos.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            e.printStackTrace();
         }
     }
 

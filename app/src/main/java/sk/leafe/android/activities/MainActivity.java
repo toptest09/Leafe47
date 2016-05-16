@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,7 +48,20 @@ public class MainActivity extends BaseActivity {
     private NoteRecyclerViewAdapter mAdapter;
 
     static final int REQUEST_CAMERA = 200;
+    static final int REQUEST_STORAGE = 202;
     static final int SELECT_FILE = 201;
+
+    private static final String[] CAMERA_PERMS = {
+            Manifest.permission.CAMERA
+    };
+
+    private static final String[] STORAGE_PERMS = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    private static final int CAMERA_REQUEST = 1;
+    private static final int STORAGE_REQUEST = 1;
 
     List<Note> mList = new ArrayList<>();
 
@@ -66,7 +80,14 @@ public class MainActivity extends BaseActivity {
         mAdapter = new NoteRecyclerViewAdapter(mList, this);
         mRecyclerView.setAdapter(mAdapter);
 
+        if(!App.hasPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            ActivityCompat.requestPermissions(this, STORAGE_PERMS, STORAGE_REQUEST);
+        }
 
+        // request camera permission
+        if(!App.hasPermission(Manifest.permission.CAMERA)) {
+            ActivityCompat.requestPermissions(this, CAMERA_PERMS, CAMERA_REQUEST);
+        }
     }
 
     @Override
