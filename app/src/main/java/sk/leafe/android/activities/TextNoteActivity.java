@@ -54,8 +54,8 @@ public class TextNoteActivity extends AppCompatActivity {
             newString= (String) savedInstanceState.getSerializable("content");
             newString2= (String) savedInstanceState.getSerializable("title");
         }
-        mTitle.setText(newString);
-        mContent.setText(newString2);
+        mTitle.setText(newString2);
+        mContent.setText(newString);
 
         File dir = new File(path);
         dir.mkdirs();
